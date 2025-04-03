@@ -7,7 +7,9 @@
     aspect-ratio: 185 / 230;
     object-fit: contain;
 }
-
+body{
+    background:green;
+}
 @media (width >= 750px) {
     .product-list-page {
         min-height: auto;
