@@ -184,9 +184,19 @@ export default async function decorate(block) {
 
   const navBrand = nav.querySelector('.nav-brand');
   const brandLink = navBrand.querySelector('.button');
-  if (brandLink) {
-    brandLink.className = '';
-    brandLink.closest('.button-container').className = '';
+  if (navBrand && brandLink) {
+    const logoLink = document.createElement('a');
+    logoLink.href = brandLink.href;
+    logoLink.setAttribute('aria-label', 'Home');
+
+    const logoImg = document.createElement('img');
+    logoImg.src = '/logo.png';
+    logoImg.alt = 'Logo';
+    logoImg.className = 'site-logo';
+
+    logoLink.appendChild(logoImg);
+    navBrand.textContent = '';
+    navBrand.appendChild(logoLink);
   }
 
   const navSections = nav.querySelector('.nav-sections');
