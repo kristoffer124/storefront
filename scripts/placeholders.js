@@ -10,7 +10,7 @@
  * governing permissions and limitations under the License.
  */
 
-import {toCamelCase} from './aem.js';
+import { toCamelCase } from './aem.js';
 
 /**
  * Gets placeholders object.
