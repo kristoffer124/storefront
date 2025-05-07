@@ -337,9 +337,35 @@ export default async function decorate(block) {
     }
   });
 
+
+  // load topline as fragment
+  const toplineMeta = getMetadata('topline');
+  const toplinePath = toplineMeta ? new URL(toplineMeta, window.location).pathname : '/topline';
+  const fragmentTopLine = await loadFragment(toplinePath);
+
+// Create topline-wrapper
+  const toplineWrapper = document.createElement('div');
+  toplineWrapper.className = 'topline-wrapper';
+
+  // Check if fragment has content
+  if (fragmentTopLine && fragmentTopLine.children.length > 0) {
+    while (fragmentTopLine.firstElementChild) toplineWrapper.append(fragmentTopLine.firstElementChild);
+  } else {
+    toplineWrapper.textContent = 'To edit this text, create a document named topline';
+  }
+
+  // Create topline section
+  const topLine = document.createElement('div');
+  topLine.className = 'topline';
+  topLine.append(toplineWrapper);
+
+  // Create nav-wrapper (you already have nav from before)
   const navWrapper = document.createElement('div');
   navWrapper.className = 'nav-wrapper';
   navWrapper.append(nav);
+
+  // Append both to block
+  block.append(topLine);
   block.append(navWrapper);
 
   navWrapper.addEventListener('mouseout', (e) => {
