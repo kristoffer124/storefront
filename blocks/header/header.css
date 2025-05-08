@@ -25,6 +25,10 @@ header .topline .topline-wrapper p {
     margin: 0;
 }
 
+header .topline .topline-wrapper .columns img {
+    width: initial;
+}
+
 /* header and nav layout */
 header .nav-wrapper {
   background-color: var(--background-color);
