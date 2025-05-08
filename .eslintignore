@@ -10,3 +10,5 @@ scripts/commerce-events-sdk.js
 scripts/widgets
 plugins/
 cypress/
+blocks/form/rules/formula/*
+blocks/form/rules/model/*
