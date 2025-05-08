@@ -171,6 +171,7 @@ header nav .nav-brand {
 }
 
 header nav .nav-brand a {
+    display: flex;
   grid-area: brand;
   flex-basis: 128px;
   font: var(--type-headline-1-font);
