@@ -17,6 +17,7 @@ header .topline {
 header .topline .topline-wrapper {
     margin: 0 auto;
     max-width: 1440px;
+    padding: 0 20px;
 }
 
 header .topline .topline-wrapper p {
@@ -581,6 +582,7 @@ li
   header .nav-wrapper.active,
   header .nav-wrapper:has( nav[aria-expanded='true']) {
     width: 320px;
+      top: 0;
   }
 
   header .nav-wrapper.active nav .nav-hamburger button,
