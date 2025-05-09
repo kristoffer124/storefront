@@ -15,6 +15,7 @@
 /* stylelint-disable no-empty-source */
 :root, .dropin-design {
   /* Adobe Commerce Dropin design tokens */
+    --color-solera-green: #38B6AB;
   --color-brand-300: #6d6d6d;
   --color-brand-500: #454545;
   --color-brand-600: #383838;
@@ -183,6 +184,16 @@ footer .footer {
 header .header[data-block-status="loaded"],
 footer .footer[data-block-status="loaded"] {
   visibility: visible;
+}
+
+/* Target any element with data-align="right" */
+[data-align="right"] {
+    text-align: right;
+}
+
+/* Target any element with data-align="center" */
+[data-align="center"] {
+    text-align: center;
 }
 
 h1,

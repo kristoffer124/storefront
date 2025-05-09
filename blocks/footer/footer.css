@@ -14,6 +14,18 @@ footer .footer p {
     margin: 0;
 }
 
+footer .columns img {
+    width: initial;
+}
+
+footer .columns > div {
+    align-items: initial;
+}
+
+.footer-wrapper .columns-wrapper:last-of-type [data-align] {
+    margin-top: 30px;
+}
+
 .storeview-switcher-button {
     background: transparent;
     padding-left: 0;
