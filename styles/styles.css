@@ -165,7 +165,7 @@ body:not(.appear) {
 
 header {
   grid-row: 1;
-  height: 89px;
+  height: 94px;
 }
 
 main {
@@ -307,7 +307,7 @@ button.button {
     background-color: #38b6abc7;
     border: 2px solid var(--color-solera-green);
     color: var(--color-neutral-50);
-    font-size: 22px;
+    font-size: 18px;
     font-weight: 800;
   color: var(--color-neutral-50);
   cursor: pointer;
