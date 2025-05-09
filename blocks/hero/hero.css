@@ -6,14 +6,19 @@
 .hero {
   position: relative;
   padding: 40px 24px;
-  min-height: 300px;
+  min-height: 550px;
 }
 
 .hero h1 {
   max-width: 1440px;
-  margin-left: auto;
-  margin-right: auto;
+    margin: 0 auto;
   color: var(--background-color);
+    font-weight: 800;
+}
+
+.hero .button-container {
+    max-width: 1440px;
+    margin: 0 auto;
 }
 
 .hero picture {

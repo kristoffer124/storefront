@@ -268,10 +268,6 @@ main pre {
   white-space: pre;
 }
 
-main > div {
-  margin: var(--spacing-xbig) var(--spacing-small);
-}
-
 input,
 textarea,
 select,
@@ -381,11 +377,6 @@ main img {
 .icon img {
   height: 100%;
   width: 100%;
-}
-
-/* sections */
-main > .section {
-  margin: var(--spacing-xbig) 0;
 }
 
 .section:empty {
