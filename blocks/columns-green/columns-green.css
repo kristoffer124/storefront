@@ -25,6 +25,10 @@
     display: block;
 }
 
+.columns-green > div > div:not(.columns-green-img-col) {
+    padding: 24px;
+}
+
 @media (width >= 900px) {
     .columns-green > div {
         align-items: center;
@@ -34,10 +38,6 @@
     .columns-green > div > div {
         flex: 1;
         order: unset;
-    }
-
-    .columns-green > div > div:not(.columns-green-img-col) {
-        padding: 24px;
     }
 
     .columns-green > div > .columns-green-img-col {

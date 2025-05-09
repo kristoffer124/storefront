@@ -300,13 +300,15 @@ button.button {
   border-radius: var(--shape-border-radius-3);
   padding: 0.5em 1.2em;
   font: var(--type-button-2-font);
-  letter-spacing: var(--type-button-2-letter-spacing);
   font-style: normal;
-  font-weight: 500;
   line-height: 1.25;
   text-align: center;
   text-decoration: none;
-  background-color: var(--color-brand-500);
+    background-color: #38b6abc7;
+    border: 2px solid var(--color-solera-green);
+    color: var(--color-neutral-50);
+    font-size: 22px;
+    font-weight: 800;
   color: var(--color-neutral-50);
   cursor: pointer;
   overflow: hidden;
@@ -318,7 +320,7 @@ main a.button:hover,
 main a.button:focus,
 button.button:hover,
 button.button:focus {
-  background-color: var(--color-brand-600);
+  background-color: var(--color-solera-green);
   cursor: pointer;
 }
 

@@ -1,7 +1,7 @@
 footer {
-    background-color: #E2E2E2;
+    background-color: #DAF0EE;
     font: var(--type-body-2-default-font);
-    letter-spacing: var(--type-body-2-default-letter-spacing);
+    border-top: 1px solid var(--color-solera-green);
 }
 
 footer .footer > div {
