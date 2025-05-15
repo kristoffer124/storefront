@@ -1,0 +1,35 @@
+.popular-categories > div {
+    display: flex;
+    flex-wrap: wrap; /* allow wrapping */
+    gap: 24px;
+    flex: 0 0 50%;
+    justify-content: space-evenly;
+}
+
+.popular-categories > div > div {
+    order: 1;
+}
+
+.popular-categories > div > .popular-categories-columns-img-col {
+    order: 0;
+    min-width: 130px
+}
+
+.popular-categories > div > .popular-categories-columns-img-col img {
+    max-width: 80px;
+    margin: 0 auto;
+    display: flex;
+    opacity: 0.6;
+}
+
+@media (width >= 900px) {
+    .popular-categories > div {
+        flex-direction: unset;
+        gap: 24px;
+    }
+
+    .popular-categories > div > div {
+        flex: 1;
+        order: unset;
+    }
+}
