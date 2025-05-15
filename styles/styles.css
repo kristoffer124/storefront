@@ -387,7 +387,7 @@ main img {
 
 main > .section > div {
   max-width: 1440px;
-  margin: auto;
+  margin: 0 auto;
   padding: 0 var(--spacing-medium);
 }
 
