@@ -31,6 +31,15 @@ header .topline .topline-wrapper .columns img {
     width: initial;
 }
 
+header .topline .topline-wrapper .columns > div {
+    align-items: center;
+    height: 29px;
+}
+
+header .topline .topline-wrapper .columns > div picture {
+    display: flex;
+}
+
 /* header and nav layout */
 header .nav-wrapper {
   background-color: var(--background-color);
