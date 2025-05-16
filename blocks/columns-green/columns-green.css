@@ -2,9 +2,6 @@
     display: flex;
     flex-direction: column;
     background-color: var(--color-solera-green);
-    background-image: url('https://drive.usercontent.google.com/download?id=15jIOmwVdw7t6D-hZ9I9xyxaBCsHMH7T0&export=view&authuser=0');
-    background-size: cover;
-    background-position: center;
     color: white;
 }
 
@@ -27,6 +24,9 @@
 
 .columns-green > div > div:not(.columns-green-img-col) {
     padding: 24px;
+    background-image: url('images/media_1adf40211492134e79d96f9e8b8005dbca9846a10.jpg');
+    background-size: cover;
+    background-position: center;
 }
 
 @media (width >= 900px) {
@@ -43,5 +43,6 @@
     .columns-green > div > .columns-green-img-col {
         flex: 2;
         order: unset;
+        max-height: 527px;
     }
 }
