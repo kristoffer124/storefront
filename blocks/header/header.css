@@ -19,7 +19,7 @@ header .topline {
 header .topline .topline-wrapper {
     margin: 0 auto;
     max-width: 1440px;
-    padding: 0 20px;
+    padding: 0 32px;
 }
 
 header .topline .topline-wrapper p {
@@ -51,7 +51,6 @@ header .nav-wrapper {
 }
 
 header nav {
-  box-sizing: border-box;
   display: grid;
   grid-template:
     'hamburger brand tools wrapperPopUpButton' var(--nav-height)
