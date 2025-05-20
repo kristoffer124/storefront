@@ -1,3 +1,7 @@
+.columns-green-container .columns-green-wrapper {
+    margin-bottom: 80px;
+}
+
 .columns-green > div {
     display: flex;
     flex-direction: column;
@@ -44,5 +48,6 @@
         flex: 2;
         order: unset;
         max-height: 527px;
+        overflow: hidden;
     }
 }

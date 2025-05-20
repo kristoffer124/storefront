@@ -1,9 +1,13 @@
 .producers-container .producers-wrapper {
     margin-bottom: var(--spacing-xbig);
+    background-color: #FBFBFB;
+    max-width: 100%;
 }
 
-main > .section > .producers > div {
-    max-width: 100%;
+.producers-container .producers-wrapper .producers {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 5px 0 20px 0;
 }
 
 .producers > div {
