@@ -2,6 +2,10 @@
     margin-bottom: var(--spacing-xbig);
 }
 
+main > .section > .producers > div {
+    max-width: 100%;
+}
+
 .producers > div {
     display: flex;
     flex-wrap: wrap; /* allow wrapping */
@@ -21,7 +25,7 @@
 }
 
 .producers > div > .producers-columns-img-col img {
-    max-width: 80px;
+    max-width: 130px;
     margin: 0 auto;
     display: flex;
 }

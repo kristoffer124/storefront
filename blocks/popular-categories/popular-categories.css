@@ -1,3 +1,7 @@
+.popular-categories {
+    margin-bottom: 80px;
+}
+
 .popular-categories > div {
     display: flex;
     flex-wrap: wrap; /* allow wrapping */
