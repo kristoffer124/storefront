@@ -4,13 +4,14 @@ export default async function decorate(block) {
   const res = await fetch(SHEET_URL);
   const text = await res.text();
 
-  const rows = text.split('\n').map(row => row.split(',').map(cell => cell.trim()));
+  const rows = parseCSV(text);
   const headers = rows.shift();
   const data = rows.map(r => ({
     country: r[0],
     producent: r[1],
     omrade: r[2],
-    imageUrl: r[3]
+    imageUrl: r[3],
+    docUrl: r[4]
   }));
 
   // Modal container
@@ -76,15 +77,25 @@ export default async function decorate(block) {
       table.appendChild(thead);
 
       const tbody = document.createElement('tbody');
-      entries.forEach(entry => {
+      entries.forEach((entry) => {
         const row = document.createElement('tr');
         row.innerHTML = `
-          <td><a href="#" class="producent-link" data-producent='${entry.producent}' data-country='${entry.country}' data-omrade='${entry.omrade}' data-title='${entry.producent}'>${entry.producent}</a></td>
-          <td>${entry.omrade}</td>
-          <td>${entry.imageUrl ? `<img src="${entry.imageUrl}" alt="Bild" style="max-width:100px; height:auto;">` : ''}</td>
-        `;  // Added image rendering
+    <td><a href="#" 
+           class="producent-link" 
+           data-producent="${entry.producent}" 
+           data-country="${entry.country}"
+           data-producent="${entry.producent}" 
+           data-country="${entry.country}" 
+           data-omrade="${entry.omrade}" 
+           data-title="${entry.producent}">
+      ${entry.producent}
+    </a></td>
+    <td>${entry.omrade}</td>
+    <td>${entry.imageUrl ? `<img src="${entry.imageUrl}" alt="Bild" style="max-width:100px; height:auto;">` : ''}</td>
+  `;
         tbody.appendChild(row);
       });
+
       table.appendChild(tbody);
       tablesContainer.appendChild(table);
     }
@@ -98,38 +109,39 @@ export default async function decorate(block) {
 
   tablesContainer.addEventListener('click', (e) => {
     const link = e.target.closest('.producent-link');
-    if (link) {
-      e.preventDefault();
+    if (!link) return;
 
-      const producent = link.dataset.producent;
-      const country = link.dataset.country;
-      const omrade = link.dataset.omrade;
-      const title = link.dataset.title;
+    e.preventDefault();
 
-      modalContent.innerHTML = `
-        <div class="modal-scroll">
-            <h2>${title}</h2>
-            <p><strong>Producent:</strong> ${producent}</p>
-            <p><strong>Land:</strong> ${country}</p>
-            <p><strong>Område:</strong> ${omrade}</p>
-            <button id="close-modal" style="margin-top:1rem;">&times;</button>
-        </div> 
-        `;
+    const producent = link.dataset.producent;
+    const country = link.dataset.country;
+    const item = data.find(d => d.producent === producent && d.country === country);
+    if (!item) return;
 
-      modal.style.display = 'flex';
+    modalContent.innerHTML = `
+    <div class="modal-scroll">
+        <h2>${item.title || ''}</h2>
+        <p><strong>Producent:</strong> ${item.producent}</p>
+        <p><strong>Land:</strong> ${item.country}</p>
+        <p><strong>Område:</strong> ${item.omrade}</p>
+        <p><strong>Beskrivning:</strong> ${item.docUrl}</p>
+        <button id="close-modal" style="margin-top:1rem;">&times;</button>
+    </div> 
+  `;
 
-      // Close button
-      document.getElementById('close-modal').addEventListener('click', () => {
+    modal.style.display = 'flex';
+
+    document.getElementById('close-modal').addEventListener('click', () => {
+      modal.style.display = 'none';
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.style.display === 'flex') {
         modal.style.display = 'none';
-      });
-      // ESC key support
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && modal.classList.contains('show')) {
-          closeModal();
-        }
-      });
-    }
+      }
+    });
   });
+
   // Close modal function
   function closeModal() {
     modal.style.display = 'none';
@@ -137,3 +149,58 @@ export default async function decorate(block) {
 
 }
 
+function parseCSV(text) {
+  const rows = [];
+  let row = [];
+  let field = '';
+  let inQuotes = false;
+  let i = 0;
+
+  while (i < text.length) {
+    const char = text[i];
+
+    if (inQuotes) {
+      if (char === '"') {
+        // Look ahead to see if this is an escaped quote
+        if (text[i + 1] === '"') {
+          field += '"';
+          i++;
+        } else {
+          inQuotes = false;
+        }
+      } else {
+        field += char;
+      }
+    } else {
+      if (char === '"') {
+        inQuotes = true;
+      } else if (char === ',') {
+        row.push(field.trim());
+        field = '';
+      } else if (char === '\r' && text[i + 1] === '\n') {
+        row.push(field.trim());
+        rows.push(row);
+        row = [];
+        field = '';
+        i++; // Skip '\n'
+      } else if (char === '\n' || char === '\r') {
+        row.push(field.trim());
+        rows.push(row);
+        row = [];
+        field = '';
+      } else {
+        field += char;
+      }
+    }
+
+    i++;
+  }
+
+  // Push last row if needed
+  if (field.length > 0 || row.length > 0) {
+    row.push(field.trim());
+    rows.push(row);
+  }
+
+  return rows;
+}
