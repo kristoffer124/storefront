@@ -16,6 +16,7 @@ export default async function decorate(block) {
   // Modal container
   const modal = document.createElement('div');
   modal.id = 'producent-modal';
+  modal.classList.add('show');
 
   // Modal content
   const modalContent = document.createElement('div');
@@ -121,7 +122,18 @@ export default async function decorate(block) {
       document.getElementById('close-modal').addEventListener('click', () => {
         modal.style.display = 'none';
       });
+      // ESC key support
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('show')) {
+          closeModal();
+        }
+      });
     }
   });
+  // Close modal function
+  function closeModal() {
+    modal.style.display = 'none';
+  }
+
 }
 

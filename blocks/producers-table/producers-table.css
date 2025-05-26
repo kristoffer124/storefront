@@ -85,7 +85,6 @@
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     position: relative;
     animation: fadeSlideUp 0.3s ease forwards;
-
     display: flex;
     flex-direction: column;
 }
