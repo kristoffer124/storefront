@@ -11,7 +11,9 @@ export default async function decorate(block) {
     producent: r[1],
     omrade: r[2],
     imageUrl: r[3],
-    docUrl: r[4]
+    docUrl: r[4],
+    embedUrl: r[5],
+    productUrl: r[6]
   }));
 
   // Modal container
@@ -125,9 +127,23 @@ export default async function decorate(block) {
         <p><strong>Land:</strong> ${item.country}</p>
         <p><strong>Område:</strong> ${item.omrade}</p>
         <p><strong>Beskrivning:</strong> ${item.docUrl}</p>
+        <div id="video-embed"></div>
         <button id="close-modal" style="margin-top:1rem;">&times;</button>
     </div> 
   `;
+
+    const videoContainer = document.getElementById('video-embed');
+    if (item.embedUrl) {
+      videoContainer.innerHTML = `
+      <iframe width="560" height="315"
+              src="${item.embedUrl}"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen>
+      </iframe>`;
+    }
 
     modal.style.display = 'flex';
 
