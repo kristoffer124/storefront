@@ -13,6 +13,24 @@ export default async function decorate(block) {
     imageUrl: r[3]
   }));
 
+  // Modal container
+  const modal = document.createElement('div');
+  modal.id = 'producent-modal';
+
+  // Modal content
+  const modalContent = document.createElement('div');
+  modalContent.id = 'producent-modal-content';
+
+  modal.appendChild(modalContent);
+  document.body.appendChild(modal);
+
+// Close modal on click outside content
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      modal.style.display = 'none';
+    }
+  });
+
   // Create country dropdown
   const countrySelect = document.createElement('select');
   countrySelect.id = 'country-select';
@@ -60,7 +78,7 @@ export default async function decorate(block) {
       entries.forEach(entry => {
         const row = document.createElement('tr');
         row.innerHTML = `
-          <td>${entry.producent}</td>
+          <td><a href="#" class="producent-link" data-producent='${entry.producent}' data-country='${entry.country}' data-omrade='${entry.omrade}' data-title='${entry.producent}'>${entry.producent}</a></td>
           <td>${entry.omrade}</td>
           <td>${entry.imageUrl ? `<img src="${entry.imageUrl}" alt="Bild" style="max-width:100px; height:auto;">` : ''}</td>
         `;  // Added image rendering
@@ -76,4 +94,34 @@ export default async function decorate(block) {
   });
 
   renderTable(''); // render all by default
+
+  tablesContainer.addEventListener('click', (e) => {
+    const link = e.target.closest('.producent-link');
+    if (link) {
+      e.preventDefault();
+
+      const producent = link.dataset.producent;
+      const country = link.dataset.country;
+      const omrade = link.dataset.omrade;
+      const title = link.dataset.title;
+
+      modalContent.innerHTML = `
+        <div class="modal-scroll">
+            <h2>${title}</h2>
+            <p><strong>Producent:</strong> ${producent}</p>
+            <p><strong>Land:</strong> ${country}</p>
+            <p><strong>Område:</strong> ${omrade}</p>
+            <button id="close-modal" style="margin-top:1rem;">&times;</button>
+        </div> 
+        `;
+
+      modal.style.display = 'flex';
+
+      // Close button
+      document.getElementById('close-modal').addEventListener('click', () => {
+        modal.style.display = 'none';
+      });
+    }
+  });
 }
+
